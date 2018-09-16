@@ -5,3 +5,76 @@ output: html_document
 
 I'm an R Markdown document! 
 
+# Section 1
+
+Here's a **code chunk** that construct the data frame:
+
+```{r data frame}
+
+##load library to apply functions
+
+library(tidyverse)
+
+##construct the data frame
+
+p1data = tibble(
+  vec_numeric = runif(10,min=0,max=5),
+  vec_char = c("a", "b", "c", "d","e","f","g","h","i","j"),
+  vec_factor = factor(c("male", "male", "female", "female","male", "male", "female", "female","male", "male")),
+  vec_logical = is.logical(vec_numeric>2)
+)
+
+##examine classes
+
+class(p1data$vec_logical)
+```
+
+Now I try to take the mean of each variable in my dataframe:
+
+The mean of the random sample is `r mean(p1data$vec_numeric)`. The mean of the logical vector is `r mean(p1data$vec_logical)`. Both the mean of the charater vector and factor vector are `r mean(p1data$vec_char)` and `r mean(p1data$vec_factor)`
+
+Here's a **code chunk** that tries to convert logical, char and factor to numerical value:
+
+```{r warning = FALSE, collapse = TRUE}
+
+##convert logical, charater and factor vectors to numberical vectors
+
+Log_to_num = as.numeric(p1data$vec_logical)
+Char_to_num = as.numeric(p1data$vec_char)
+Fac_to_num = as.numeric(p1data$vec_factor)
+
+##examine classes
+
+class(Log_to_num)
+class(Char_to_num)
+class(Fac_to_num)
+```
+
+
+```{r char to factor}
+
+##convert character variable to factor 
+
+Char_to_fac = factor(p1data$vec_char)
+
+##exaime classes
+
+class(Char_to_fac)
+```
+
+```{r fac to char}
+
+##convert factor variable to character
+
+Fac_to_char = as.character(p1data$vec_factor)
+
+##exaime classes
+
+class(Fac_to_char)
+
+```
+
+# Section 2
+
+I can take the mean of the sample, too!
+The mean is 
