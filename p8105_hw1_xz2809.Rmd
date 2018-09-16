@@ -5,7 +5,7 @@ output: html_document
 
 I'm an R Markdown document! 
 
-# Section 1
+# Problem 1
 
 Here's a **code chunk** that construct the data frame:
 
@@ -21,7 +21,7 @@ p1data = tibble(
   vec_numeric = runif(10,min=0,max=5),
   vec_char = c("a", "b", "c", "d","e","f","g","h","i","j"),
   vec_factor = factor(c("male", "male", "female", "female","male", "male", "female", "female","male", "male")),
-  vec_logical = is.logical(vec_numeric>2)
+  vec_logical = as.logical(vec_numeric>2)
 )
 
 ##examine classes
@@ -31,7 +31,7 @@ class(p1data$vec_logical)
 
 Now I try to take the mean of each variable in my dataframe:
 
-The mean of the random sample is `r mean(p1data$vec_numeric)`. The mean of the logical vector is `r mean(p1data$vec_logical)`. Both the mean of the charater vector and factor vector are `r mean(p1data$vec_char)` and `r mean(p1data$vec_factor)`
+The mean of the random sample is `r mean(p1data$vec_numeric)`. The mean of the logical vector is `r mean(p1data$vec_logical)`. Both the mean of the charater vector and factor vector are `r mean(p1data$vec_char)` and `r mean(p1data$vec_factor)`. 
 
 Here's a **code chunk** that tries to convert logical, char and factor to numerical value:
 
@@ -74,7 +74,42 @@ class(Fac_to_char)
 
 ```
 
-# Section 2
+# Problem 2
 
-I can take the mean of the sample, too!
-The mean is 
+Here is the **code chunk** that construct the data frame
+
+```{r}
+
+p2data = tibble(
+  x = rnorm(1000,mean=0),
+  y = rnorm(1000,mean=0),
+  vec_logical = as.logical(x + y >0),
+  
+  ##not sure about coersing
+  
+  Log_to_num_coer = as.numeric (vec_logical),
+  Log_to_fac_coer = as.factor(vec_logical)
+)
+
+##examine classes
+
+class(p2data$Log_to_num_coer)
+
+```
+
+The size of the data is `r dim(p2data)`. The mean of the x is `r mean(p2data$x)` and the median of the x is `r median(p2data$x)`. The proportion of the cases for which the logical vector is `r sum(p2data$vec_logical=="TRUE")/length(p2data$vec_logical)`.
+
+Here is the **code chunk** that construct the scatterplot: 
+
+```{r}
+library(ggplot2)
+
+ggplot(p2data,
+       aes(y = y, x = x)) + geom_point(color='darkblue')
+
+
+```
+
+
+
+
