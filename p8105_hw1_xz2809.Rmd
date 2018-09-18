@@ -105,9 +105,11 @@ Here is the **code chunk** that construct the scatterplot:
 library(ggplot2)
 
 ggplot(p2data,
-       aes(y = y, x = x)) + geom_point(color='darkblue')
-
-
+       aes(y = y, x = x, color = vec_logical)) + geom_point()
+ggplot(p2data,
+       aes(y = y, x = x, color = Log_to_num_coer)) + geom_point()
+ggplot(p2data,
+       aes(y = y, x = x, color = Log_to_fac_coer)) + geom_point()
 ```
 
 
