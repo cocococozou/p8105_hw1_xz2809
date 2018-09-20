@@ -93,7 +93,6 @@ p2data = tibble(
 
 ##examine classes
 
-class(p2data$Log_to_num_coer)
 
 ```
 
